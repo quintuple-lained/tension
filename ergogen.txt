@@ -1,0 +1,150 @@
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+points:
+  zones:
+    matrix_left:
+      anchor:
+        rotate: -10
+        shift: [0px,0.25py]
+      columns:
+        pinky:
+          key:
+            splay: -5
+            stagger: 10
+            spread: 20
+        ring:
+          key: 
+            splay: -5
+            stagger: 10
+            spread: 20
+        middle:
+          key:
+            splay: -5
+            stagger: 10
+            spread: 20
+        index:
+          key:
+            splay: -5
+            stagger: -10
+            spread: 20
+      rows:
+        home:
+    left_thumbs:
+      anchor:
+        ref: matrix_left_index_home
+        shift: [1px, -1px]
+        rotate: -10
+      columns:
+        left:
+          key:
+            splay: -5
+            stagger: -10
+            spread: 20
+        right:
+          key:
+            splay: -5
+            stagger: -10
+            spread: 20
+      rows:
+        cluster:
+    matrix_right:
+      anchor:
+        shift: [8px,-0.5px]
+        rotate: 30
+      columns:
+        index:
+          key:
+            splay: -5
+            stagger: 10
+            spread: 20
+        middle:
+          key:
+            splay: -5
+            stagger: 10
+            spread: 20
+        ring:
+          key:
+            splay: -5
+            stagger: -10
+            spread: 20
+        pinky:
+          key:
+            splay: -5
+            stagger: -10
+            spread: 20
+      rows:
+        home:
+        upper:
+    right_thumbs:
+      anchor:
+        ref: matrix_right_index_home
+        shift: [-2px, -2.5px]
+        rotate: 20
+      columns:
+        left:
+          key:
+        middle:
+          key:
+        right:
+          rows.upper.skip: true
+          key:
+      rows:
+        cluster:
+        upper:
+          key:
+          shift: [0.5px,0px]
+    startbutton:
+      anchor:
+        shift: [6px,1.5px]
+
+outlines:
+  # Pure key outline.
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  # Key outlines with 0.5mm removed to show key overlaps.
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  # PCB board outline.
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_left_pinky_home
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_left_pinky_home
+          shift: [-0.5px,0.5py]
+        - ref: matrix_left_ring_home
+          shift: [-0.5px,0.5py]
+        - ref: matrix_left_middle_home
+          shift: [-0.5px,0.5py]
+        - ref: matrix_right_middle_upper
+          shift: [0.5px,0.5py]
+        - ref: matrix_right_pinky_upper
+          shift: [0.5px,0.5px]
+        - ref: matrix_right_pinky_home
+          shift: [0.5px,-0.5py]
+        - ref: right_thumbs_right_cluster
+          shift: [0.5px,-0.5py]
+        - ref: right_thumbs_left_cluster
+          shift: [-0.5px,-0.5py]
+        - ref: left_thumbs_right_cluster
+          shift: [0.5px,-0.5py]
+        - ref: left_thumbs_right_cluster
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_left_pinky_home
+          shift: [0.25px,-1py]
+      fillet: 2
+  # Combination preview showing outline and keys.
+  combo:
+    - name: board
+    - operation: stack
+      name: keys
